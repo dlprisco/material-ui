@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createRenderer, describeConformance, screen } from '@mui-internal/test-utils';
+import { createRenderer, screen } from '@mui/internal-test-utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Drawer, { drawerClasses as classes } from '@mui/material/Drawer';
 import { getAnchor, isHorizontal } from './Drawer';
+import describeConformance from '../../test/describeConformance';
 
 describe('<Drawer />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -21,13 +22,7 @@ describe('<Drawer />', () => {
       testVariantProps: { variant: 'persistent' },
       testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
       refInstanceof: window.HTMLDivElement,
-      skip: [
-        'componentProp',
-        'componentsProp',
-        'themeVariants',
-        // react-transition-group issue
-        'reactTestRenderer',
-      ],
+      skip: ['componentProp', 'componentsProp', 'themeVariants'],
     }),
   );
 
@@ -337,6 +332,27 @@ describe('<Drawer />', () => {
       expect(document.querySelector(`.${classes.root}`)).toHaveComputedStyle({
         zIndex: String(theme.zIndex.drawer),
       });
+    });
+  });
+
+  describe('prop: anchor', () => {
+    it('should set correct class name on the root element', () => {
+      const { setProps } = render(
+        <Drawer open anchor="left">
+          <div />
+        </Drawer>,
+      );
+
+      expect(document.querySelector(`.${classes.root}`)).to.have.class(classes.anchorLeft);
+
+      setProps({ anchor: 'right' });
+      expect(document.querySelector(`.${classes.root}`)).to.have.class(classes.anchorRight);
+
+      setProps({ anchor: 'top' });
+      expect(document.querySelector(`.${classes.root}`)).to.have.class(classes.anchorTop);
+
+      setProps({ anchor: 'bottom' });
+      expect(document.querySelector(`.${classes.root}`)).to.have.class(classes.anchorBottom);
     });
   });
 });

@@ -1,12 +1,14 @@
-# Joy UI - Vite.js in TypeScript example
+# Joy UI - Vite.js in TypeScript example
 
-[Joy UI](https://mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy in the development process.
+[Joy UI](https://mui.com/joy-ui/getting-started/) is a library of beautifully designed React UI components built to spark joy in the development process.
 
-[Vite](https://vitejs.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects, consisting of a dev server and a build command.
+[Vite](https://vite.dev/) is a build tool that aims to provide a faster and leaner development experience for modern web projects, consisting of a dev server and a build command.
 
 ## How to use
 
 Download the example [or clone the repo](https://github.com/mui/material-ui):
+
+<!-- #default-branch-switch -->
 
 ```bash
 curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/joy-ui-vite-ts
